@@ -1,0 +1,17 @@
+{
+  "name": "FinAPI",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/carlosaugustomcz/FinAPI.git",
+  "author": "carlos.augustomcz <carlos.augustomcz@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon scr/index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
