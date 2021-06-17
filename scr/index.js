@@ -11,17 +11,24 @@ app.post("/account", (request, response) => {
 
  const {cpf, name} = request.body;
 
- const id = uuidv4;
+ const CustomerAlreadyExist = Customers.some(
+     (customer) => customer.cpf === cpf);
+
+ if (CustomerAlreadyExist){
+     return response.status(401).json({
+         error: "Customer already exists!"
+     })
+ }
 
  Customers.push({
     cpf,
     name,
-    id,
+    id: uuidv4,
     statement: []
  });
 
- response.status(201).send("Conta Criada");
- console.log(Customers);
+ return response.status(201).json({
+     messgae: "account created"});
 });
 
 app.listen(3333);
