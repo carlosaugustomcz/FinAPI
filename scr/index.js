@@ -31,5 +31,19 @@ app.post("/account", (request, response) => {
      messgae: "account created"});
 });
 
+app.get("/statement/", (request, response) => {
+    const { cpf } = request.headers;
+
+    const customer = Customers.find((customer) => 
+    customer.cpf === cpf);
+
+    if (!customer) {
+        return response.status(400).json({
+            message: "Customer not found!"
+        });
+    }
+
+    return response.json(customer.statement);
+});
 app.listen(3333);
 console.log('Server Start');
