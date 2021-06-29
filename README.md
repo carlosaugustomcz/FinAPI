@@ -1,4 +1,4 @@
-# FinAPI
+# FinAPI - Criação de uma conta bancária usando NodeJS. (Sem acesso a banco de Dados) 
 
 ******Requisitos******
 * Deve ser possível criar uma conta
