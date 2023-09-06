@@ -56,12 +56,21 @@ app.post("/account", (request, response) => {
  Customers.push({
     cpf,
     name,
-    id: uuidv4,
+    id: uuidv4(),
     statement: []
- });
+  });
 
  return response.status(201).json({
      message: "account created"});
+});
+
+app.get("/account", verifyIfExistsAccountCPF, (request, response) => {
+
+    const { customer } = request;
+    
+    return response.json({ customer });
+
+
 });
 
 app.get("/statement/", verifyIfExistsAccountCPF, (request, response) => {
@@ -123,7 +132,7 @@ app.post("/withdraw", verifyIfExistsAccountCPF, (request, response) => {
     const statementOperation = {
         amount,
         created_at: new Date(),
-        type: "credit"
+        type: "debit"
 
     }
 
@@ -146,14 +155,7 @@ app.put("/account/", verifyIfExistsAccountCPF, (request, response) => {
     return response.json({ customer });
 });
 
-app.get("/account", verifyIfExistsAccountCPF, (request, response) => {
 
-    const { customer } = request;
-
-    return response.json({ customer });
-
-
-});
 
 app.delete("/account", verifyIfExistsAccountCPF, (request, response) => {
     const { customer } = request.customer;
